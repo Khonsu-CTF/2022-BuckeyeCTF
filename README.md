@@ -1,3 +1,4 @@
+
 # Misc - Devil (7 solves / 477 points)
 
 <p align="center">
@@ -34,7 +35,7 @@ It seems a bit too easy but let's see what we can get from this tool :
   <img src="images/prettyExtract.png">
 </p>
 
-As expected, we don't have our answer yet. It seems like it did parse our data but it couldn't identify them, decode them or put them in relation to actual data so we must have missed something. After looking more at the description of the tool, we can see that we need to fill the database to parse and identify successfully our data and to do that, there is actually a python module that exists but it needs the Official J1939 Digital Annex from the SAE that costs like 200$ so that's clearly not the way to go.
+As expected, we don't have our answer yet. It seems like it did parse our data but it couldn't identify them, decode them or put them in relation to actual data so we must have missed something. After looking more at the description of the tool, we can see that we need to fill the database to parse and identify successfully our data and to do that, there is actually a python module that exists but it needs the **Official J1939 Digital Annex** from the SAE that costs like 200$ so that's clearly not the way to go.
 <p align="center">
   <img src="images/prettyNeeds.png">
 </p>
@@ -63,16 +64,16 @@ Now, you can just fill the database of *pretty_j1939* using the files listed abo
   <img src="images/prettyResults.png">
 </p>
 
-We now have successfully extracted the various information from our capture so it's the moment to look for the only value that is actually interesting for us : "High resolution Maximum Speed". For some reasons, the tool doesn't provide us the values directly but it might be just that I don't know how to use it. Anyways, we're close enough to conclude this manually. By searching through our database, we can find a parameter that seems relevant to our challenge :
+We now have successfully extracted the various information from our capture so it's the moment to look for the only value that is actually interesting for us : **"High resolution Maximum Speed"**. For some reasons, the tool doesn't provide us the values directly but it might be just that I don't know how to use it. Anyways, we're close enough to conclude this manually. By searching through our database, we can find a parameter that seems relevant to our challenge :
 <p align="center">
   <img src="images/spnHighRes.png">
 </p>
 
 We have a few important information here :
-- The PGN (65261) will be useful to locate our information from the results
+- The **PGN (65261)** will be useful to locate our information from the results
 - Each PGN is associatied with multiple SPN that are individual parameters and each of them occupy one or more bytes of data so here, the parameter *bitPositionStart* is important to locate the right value among the others
-- *spnLength* tells us that our value is 2-bytes long
-- The unit is *km/h* which is what we're looking for but the *resolutionNumerator* and the *resolutionDenominator* are very important since they'll be giving us the right the scale so whatever our result will be, we'll have to multiply it by *0.00390625*.
+- *spnLength* tells us that our value is **2-bytes long**
+- The unit is **km/h** which is what we're looking for but the *resolutionNumerator* and the *resolutionDenominator* are very important since they'll be giving us the right the scale so whatever our result will be, we'll have to multiply it by **0.00390625**.
 
 Let's use this information to analyze our results :
 <p align="center">
