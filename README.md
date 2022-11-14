@@ -101,6 +101,8 @@ As you can see, the repository that should be in the first results actually neve
 
 Among all these results, I've found something useful : the [ISOBUS 11783 Online Data Base](https://isobus.net). **ISOBUS 11783** is a communication protocol for the agricultural sector that is **based on the SAE J1939 specification**. Therefore, it has a lot in common with the protocol we've been investigating on since the beginning and the good news is that this website includes the list of the parameters and data that it is supported by this protocol and their associated PGN/SPN. I won't go here into to much details about how the protocol works or what are PGN and SPN but if you're interested in understanding what you're reading about, you can start with this link [Intro to J1939](https://www.csselectronics.com/pages/j1939-explained-simple-intro-tutorial).
 
+
+
 Let's have a look to the SPN list to try to find a parameter that would match the information we're looking for, let's start with a search with the keyword `speed` :
 <p align="center">
   <img src="images/spnSpeedSearch.png">
@@ -117,7 +119,7 @@ Now, if we comeback to our prettified capture, we can see that this PGN appears 
 <p align="center">
   <img src="images/checkPGN.png">
 </p>
-...but the question is, what do we do next ? How to extract manually the information we're looking for from this data ? I've found a preliminary answer on this article [How to decode CAN BUS messages](https://www.linkedin.com/pulse/how-decode-can-bus-messages-molie-tudor-mihai). I've summarized below with an example from our case what I've learned there and that could be useful to us :
+...but the question is, what do we do next ? How to extract manually the information we're looking for from this data ? I've found a preliminary answer on this <a href="https://www.linkedin.com/pulse/how-decode-can-bus-messages-molie-tudor-mihai">article</a> that I've summarized below with an example from our case what I've learned there and that could be useful to us :
 <p align="center">
   <img src="images/analyzePGN1.png">
 </p>
@@ -131,14 +133,18 @@ Unfortunately, as you might have seen it, our SPN isn't here. The version of the
 </p>
 From there and thanks to all the other websites, articles and documentation I've read during the CTF, it was clear that the two bytes `9C68` were the two bytes we are interesting in from the SPN values `6868309C68FFFFFF`. My reasoning here is that the three first bytes, as we've seen it above, are used by three other "regular" SPN and `FF` bytes seem to be used sometimes as placeholder for future parameters and they clearly don't like a real value that could be of interest for us. Finally, the reason I think that our SPN uses two bytes and not only one like the three others is because its value is in `High Resolution` and all the other parameters in high resolution I've seen in the documentation were also using two bytes with a different unit so it can add more precision to the value. We can already convert this from hexadecimal to a decimal value, without forgetting about the endianness, and it gives us the following : `0x689c = 26780`. Mmmh ok, that's nice but we clearly needs one more information to be able to use this value... What unit is that ?!
 
+<br>
+
 To answer this question, if you remember, I talked to you about **two** websites earlier and that's the moment where the second one comes into play with the following details :
 <p align="center">
   <img src="images/pgnDetails3.png">
-  <label>[pdfcoffee.com_j1939daserial-control-module-2019xls-pdf-free.pdf](https://pdfcoffee.com/download/j1939daserial-control-module-2019xls-pdf-free.html)</label>
+  <label><a href="https://pdfcoffee.com/download/j1939daserial-control-module-2019xls-pdf-free.html">pdfcoffee.com_j1939daserial-control-module-2019xls-pdf-free.pdf</a></label>
 </p>
 First of all, it confirms us that we were right about expecting the SPN 6808 to be 2-bytes long and then, the **Graal** (or just "unit" depending how long you've been looking for this) is right next to that information. We can now convert the value we just found : `26780 / 256 = 104.609375 km/h`
 
-WE NOW HAVE OUR FINAL  ANSWER !! Congratulations for reading **this** far, only true ones could have done it !! 🎉🎉🎉
+<br>
+
+WE NOW HAVE OUR FINAL  ANSWER !! Congratulations for reading **this** far, only true ones could have done it !! 🎉
 
 It's time to claim our prize :
 <p align="center">
