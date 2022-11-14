@@ -54,6 +54,8 @@ Apparently, we can't extract data from a capture directly by using this framewor
   <img src="images/prettyEmpty.png">
 </p>
 
+**Note :** *It was actually possible to use TruckDevil in combination to another tool that would have replayed our capture but since I didn't explore this option myself and it is already documented elsewhere, I decided to let this writeup as it is, guiding you through other ways even if they are less straightforward.*
+
 Since *pretty_j1939* is using json file as its database, that's what we'll be looking for first in the *TruckDevil* repository and there it is, everything we need :
 <p align="center">
   <img src="images/devilDBs.png">
