@@ -138,13 +138,13 @@ To answer this question, if you remember, I talked to you about **two** websites
 </p>
 <p align="center">
   <img src="images/pgnDetails3.png">
-  <label><a href="https://pdfcoffee.com/download/j1939daserial-control-module-2019xls-pdf-free.html">pdfcoffee.com_j1939daserial-control-module-2019xls-pdf-free.pdf</a></label>
+  <label><div align="center"><a href="https://pdfcoffee.com/download/j1939daserial-control-module-2019xls-pdf-free.html">pdfcoffee.com_j1939daserial-control-module-2019xls-pdf-free.pdf</a></div></label>
 </p>
 First of all, it confirms us that we were right about expecting the SPN 6808 to be 2-bytes long and then, the **Graal** (or just "unit" depending how long you've been looking for this) is right next to that information. We can now convert the value we just found : `26780 / 256 = 104.609375 km/h`
 
-<p>
+
 WE NOW HAVE OUR FINAL  ANSWER !! Congratulations for reading **this** far, only true ones could have done it !! 🎉
-</p>
+
 
 It's time to claim our prize :
 <p align="center">
