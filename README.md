@@ -133,18 +133,18 @@ Unfortunately, as you might have seen it, our SPN isn't here. The version of the
 </p>
 From there and thanks to all the other websites, articles and documentation I've read during the CTF, it was clear that the two bytes `9C68` were the two bytes we are interesting in from the SPN values `6868309C68FFFFFF`. My reasoning here is that the three first bytes, as we've seen it above, are used by three other "regular" SPN and `FF` bytes seem to be used sometimes as placeholder for future parameters and they clearly don't like a real value that could be of interest for us. Finally, the reason I think that our SPN uses two bytes and not only one like the three others is because its value is in `High Resolution` and all the other parameters in high resolution I've seen in the documentation were also using two bytes with a different unit so it can add more precision to the value. We can already convert this from hexadecimal to a decimal value, without forgetting about the endianness, and it gives us the following : `0x689c = 26780`. Mmmh ok, that's nice but we clearly needs one more information to be able to use this value... What unit is that ?!
 
-<br>
-
+<p>
 To answer this question, if you remember, I talked to you about **two** websites earlier and that's the moment where the second one comes into play with the following details :
+</p>
 <p align="center">
   <img src="images/pgnDetails3.png">
   <label><a href="https://pdfcoffee.com/download/j1939daserial-control-module-2019xls-pdf-free.html">pdfcoffee.com_j1939daserial-control-module-2019xls-pdf-free.pdf</a></label>
 </p>
 First of all, it confirms us that we were right about expecting the SPN 6808 to be 2-bytes long and then, the **Graal** (or just "unit" depending how long you've been looking for this) is right next to that information. We can now convert the value we just found : `26780 / 256 = 104.609375 km/h`
 
-<br>
-
+<p>
 WE NOW HAVE OUR FINAL  ANSWER !! Congratulations for reading **this** far, only true ones could have done it !! 🎉
+</p>
 
 It's time to claim our prize :
 <p align="center">
