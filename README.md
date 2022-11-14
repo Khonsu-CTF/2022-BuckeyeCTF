@@ -6,7 +6,7 @@
 </p>
 
 ## Write-up :
-Just so you know, we'll be going through two different paths to solve this challenge : the intended one that I couldn't find and the one I went through during the competition, more interesting but also clearly less straightforward (fully manual)... Let's dive into it by starting with the steps they've in common.
+Just so you know, we'll be going through two different paths to solve this challenge : the (more or less) intended one that I couldn't find and the one I went through during the competition, more interesting but also clearly less straightforward (fully manual)... Let's dive into it by starting with the steps they've in common.
 
 ### Common steps :
 The challenge description talks about a network protocol that is used by heavy trucks. When looking at the link provided in the description, we can identify this protocol as **SAE J1939**. It's a higher-layer protocol base on **Controller Area Network (CAN)** and its main functions are communication and diagnostics among vehicle components which could be interesting since the information we're looking for to solve this challenge is "the high resolution maximum speed *a truck* **can be** driven". We've also at our disposal an address and a port we can contact so let's do it to see what input we have to solve our problem.
@@ -42,14 +42,14 @@ As expected, we don't have our answer yet. It seems like it did parse our data b
 
 At this point, I've tried to find the annex somewhere else or to try to find an already built database from other tools but no luck. All I found was an old database that didn't include the information we needed and it also lacked some information to work correctly with *pretty_j1939*. From there, the road is splitting itself into two so let's have a look at the first option we have.
 
-### The intended way :
+### The (more or less) intended way :
 
 Until now, we haven't been able to find the right database even though we've searched a long time on Google, checked a lot of articles and Github repositories but no luck. However, there is still something that we didn't use but that could be important, the title of the challenge : **devil**. At first sight, it  has nothing to do with any of what we've been working on since the beginning so why would the author name his challenge like that ?... Yeah you thought about a hint too, right ? So, time to check that assumption with our friend Google and here we are, a new Github repository that has *devil* in its name and is about J1939 protocol :
 <p align="center">
   <img src="images/googleResultG.png">
 </p>
 
-Apparently, we won't be able to extract the data from our capture directly by using this framework but it seems like they have an already filled database that we could use. Let's first check quickly our empty database so that we know what information we are looking for :
+Apparently, we can't extract data from a capture directly by using this framework but it seems like they have an already filled database that we could use. Let's first check quickly our empty database so that we know what information we are looking for :
 <p align="center">
   <img src="images/prettyEmpty.png">
 </p>
